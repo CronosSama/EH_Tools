@@ -1,0 +1,25 @@
+###[ 802.3 ]### 
+  dst       = 01:80:c2:00:00:00
+  src       = aa:bb:cc:00:01:20
+  len       = 38
+###[ LLC ]### 
+     dsap      = 0x42
+     ssap      = 0x42
+     ctrl      = 3
+###[ Spanning Tree Protocol ]### 
+        proto     = 0
+        version   = 0
+        bpdutype  = 0
+        bpduflags = 0
+        rootid    = 32769
+        rootmac   = aa:bb:cc:00:01:00
+        pathcost  = 0
+        bridgeid  = 32769
+        bridgemac = aa:bb:cc:00:01:00
+        portid    = 32771
+        age       = 0.0
+        maxage    = 20.0
+        hellotime = 2.0
+        fwddelay  = 15.0
+###[ Padding ]### 
+           load      = '\x00\x00\x00\x00\x00\x00\x00\x00'

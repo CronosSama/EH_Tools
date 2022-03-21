@@ -1,0 +1,128 @@
+
+HTTP Request when there is data on it will have a Raw that we can access using => packet[scapy.Raw]
+the first entries we can entry using => packet.Host packet.Path
+
+<HTTPRequest 
+ Method='POST' Path='/api/auth/signin' Http_Version='HTTP/1.1' Accept='application/json, text/plain, 
+ */*' Accept_Encoding='gzip, deflate' Accept_Language='en-US,en;q=0.9' 
+ Authorization='Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwZmRhYzE4NTBkZjk0MTQxMjE1Y2Y3YSIsInVzZXJuYW1lIjoiZm9ybWF0ZXVyIiwicHJvZmlsZUltZyI6IiIsImlhdCI6MTYzMTM2MjUyOH0.gVsxuOOxfJUuKh7iKourV9J1HxwkB9aHvIfynVy_UGA' 
+ Connection='keep-alive' Content_Length='87' Content_Type='application/json;charset=UTF-8' 
+ Host='www.sen.netmobo.lab' Origin='http://www.sen.netmobo.lab' Referer='http://www.sen.netmobo.lab/signin'
+  User_Agent='Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36' 
+|<Raw  load='{"email":"formateur@sen.netmobo.lab","username":"","password":"123456","profileImg":""}' |>>
+
+
+
+
+
+<TCP  sport=38738 dport=http seq=1868240165 ack=180559114 dataofs=8 reserved=0 
+flags=PA window=502 chksum=0x16bd urgptr=0 
+options=[('NOP', None), ('NOP', None), ('Timestamp', (2127942056, 2041250258))] 
+
+<Ether  dst=ca:03:67:a8:00:08 src=08:00:27:18:b6:34 type=IPv4 
+|<IP  version=4 ihl=5 tos=0x0 len=60 id=52408 flags=DF frag=0 ttl=64 proto=tcp chksum=0xaec src=10.0.0.109 dst=151.101.193.69 
+|<TCP  sport=40924 dport=https seq=2237149321 ack=0 dataofs=10 reserved=0 flags=S window=64240 chksum=0x6346 urgptr=0 options=[('MSS', 1460), ('SAckOK', b''), ('Timestamp', (3505822562, 0)), ('NOP', None), ('WScale', 7)] |>>>
+
+
+
+you can access anything in this packet like this : 
+for example i want to sniff the dst mac address
+packet["Ethernet"].dst
+
+
+{'email': 'formateur@sen.netmobo.lab', 'username': '', 'password': '123456', 'profileImg': ''}
+b'www.sen.netmobo.lab/api/auth/signin'
+###[ Ethernet ]### 
+  dst       = 08:00:27:57:b7:6c
+  src       = 08:00:27:18:b6:34
+  type      = IPv4
+###[ IP ]### 
+     version   = 4
+     ihl       = 5
+     tos       = 0x0
+     len       = 596
+     id        = 39543
+     flags     = DF
+     frag      = 0
+     ttl       = 64
+     proto     = tcp
+     chksum    = 0x89b1
+     src       = 10.0.0.109
+     dst       = 10.0.0.15
+     \options   \
+###[ TCP ]### 
+        sport     = 51974
+        dport     = http
+        seq       = 2890353141
+        ack       = 2612692906
+        dataofs   = 8
+        reserved  = 0
+        flags     = PA
+        window    = 502
+        chksum    = 0x16c2
+        urgptr    = 0
+        options   = [('NOP', None), ('NOP', None), ('Timestamp', (1852901175, 2886981177))]
+###[ HTTP 1 ]### 
+###[ HTTP Request ]### 
+           Method    = 'POST'
+           Path      = '/api/auth/signin'
+           Http_Version= 'HTTP/1.1'
+           A_IM      = None
+           Accept    = 'application/json, text/plain, */*'
+           Accept_Charset= None
+           Accept_Datetime= None
+           Accept_Encoding= 'gzip, deflate'
+           Accept_Language= 'en-US,en;q=0.9'
+           Access_Control_Request_Headers= None
+           Access_Control_Request_Method= None
+           Authorization= None
+           Cache_Control= None
+           Connection= 'keep-alive'
+           Content_Length= '87'
+           Content_MD5= None
+           Content_Type= 'application/json;charset=UTF-8'
+           Cookie    = None
+           DNT       = None
+           Date      = None
+           Expect    = None
+           Forwarded = None
+           From      = None
+           Front_End_Https= None
+           HTTP2_Settings= None
+           Host      = 'www.sen.netmobo.lab'
+           If_Match  = None
+           If_Modified_Since= None
+           If_None_Match= None
+           If_Range  = None
+           If_Unmodified_Since= None
+           Keep_Alive= None
+           Max_Forwards= None
+           Origin    = 'http://www.sen.netmobo.lab'
+           Permanent = None
+           Pragma    = None
+           Proxy_Authorization= None
+           Proxy_Connection= None
+           Range     = None
+           Referer   = 'http://www.sen.netmobo.lab/signin'
+           Save_Data = None
+           TE        = None
+           Upgrade   = None
+           Upgrade_Insecure_Requests= None
+           Upgrade_Insecure_Requests= None
+           User_Agent= 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36'
+           Via       = None
+           Warning   = None
+           X_ATT_DeviceId= None
+           X_Correlation_ID= None
+           X_Csrf_Token= None
+           X_Forwarded_For= None
+           X_Forwarded_Host= None
+           X_Forwarded_Proto= None
+           X_Http_Method_Override= None
+           X_Request_ID= None
+           X_Requested_With= None
+           X_UIDH    = None
+           X_Wap_Profile= None
+           Unknown_Headers= None
+###[ Raw ]### 
+              load      = '{"email":"formateur@sen.netmobo.lab","username":"","password":"123456","profileImg":""}'

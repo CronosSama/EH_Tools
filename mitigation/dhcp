@@ -1,0 +1,32 @@
+SW3(config)#ip dhcp snooping
+SW3(config)#ip dhcp snooping vlan 10
+SW3(config)#no ip dhcp snooping information option
+SW3(config)#int port 1
+SW3(config-if)#ip dhcp snooping trust
+SW3(config-if)#
+
+
+
+
+
+SW1-RAK(config-if)#
+SW1-RAK(config-if)#exit
+SW1-RAK(config)#ip dhcp snooping
+SW1-RAK(config)#ip dhcp snooping vlan 10
+SW1-RAK(config)#int e0/0
+SW1-RAK(config-if)#ip dhcp snooping trust
+SW1-RAK(config-if)#
+
+SW3-RAK(config)#ip dhcp snooping
+SW3-RAK(config)#ip dhcp snooping vlan 10
+SW3-RAK(config)#int e1/0
+SW3-RAK(config-if)#ip dhcp snooping trust
+SW3-RAK(config-if)#
+
+clean
+
+ip dhcp snooping
+ip dhcp snooping vlan 10
+no ip dhcp snooping information option
+int port 1
+ip dhcp snooping trust

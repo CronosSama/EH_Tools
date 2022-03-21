@@ -1,0 +1,22 @@
+Mac ::::
+dst = ff:ff:ff:ff:ff:ff
+src = random mac
+0x800
+
+IP :::::
+dst = 255.255.255.255
+src = 0.0.0.0 
+protocol = 17 
+dscp = df
+
+Transport :::
+udp
+sport = 68
+dport = 67
+option = 53
+
+HOW : 
+1- Network_address .
+2- generate random macs
+3- send_packet no need to wait a respond .
+

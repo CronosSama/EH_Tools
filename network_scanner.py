@@ -1,5 +1,4 @@
 import scapy.all as scapy
-
 import optparse
 
 parser = optparse.OptionParser()
@@ -18,6 +17,7 @@ def scan(ip) :
     # answered, unanswered = scapy.srp(arp_request_broadcast,timeout = 1)
     #we are just getting the answered ones
     answered_list = scapy.srp(arp_request_broadcast,timeout = 1)[0]
+    scapy.wireshark(answered_list)
     print("IP address :\t\t\t\tMac Address : \n")
     map_IP_MAC = []
     for ans in answered_list :

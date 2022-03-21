@@ -1,0 +1,167 @@
+[+] DNS REQUEST !!
+
+scapy_packet[scapy.DNSQR].show()
+
+or in case of a response packet / request packet
+scapy_packet["DNS"].qd.show()
+
+###[ DNS Question Record ]### 
+  qname     = 'www.facebook.com.'
+  qtype     = A
+  qclass    = IN
+
+
+[+] DNS REQUEST !!
+###[ DNS Question Record ]### 
+  qname     = 'www.facebook.com.'
+  qtype     = AAAA
+  qclass    = IN
+
+
+scapy_packet[scapy.DNSRR].show()
+or
+scapy_packet["DNS"].qd.show()
+
+###[ DNS Resource Record ]### 
+  rrname    = 'www.facebook.com.'
+  type      = CNAME
+  rclass    = IN
+  ttl       = 0
+  rdlen     = None
+  rdata     = 'star-mini.c10r.facebook.com.'
+###[ DNS Resource Record ]### 
+  rrname    = 'star-mini.c10r.facebook.com.'
+  type      = A
+  rclass    = IN
+  ttl       = 60
+  rdlen     = None
+  rdata     = 157.240.196.35
+
+scapy_packet.show() [Response]
+
+###[ DNS ]### 
+        id        = 25005
+        qr        = 1
+        opcode    = QUERY
+        aa        = 0
+        tc        = 0
+        rd        = 1
+        ra        = 1
+        z         = 0
+        ad        = 0
+        cd        = 0
+        rcode     = ok
+        qdcount   = 1
+        ancount   = 2
+        nscount   = 0
+        arcount   = 0
+        \qd        \
+         |###[ DNS Question Record ]### 
+         |  qname     = 'www.facebook.com.'
+         |  qtype     = A
+         |  qclass    = IN
+        \an        \
+         |###[ DNS Resource Record ]### 
+         |  rrname    = 'www.facebook.com.'
+         |  type      = CNAME
+         |  rclass    = IN
+         |  ttl       = 0
+         |  rdlen     = None
+         |  rdata     = 'star-mini.c10r.facebook.com.'
+         |###[ DNS Resource Record ]### 
+         |  rrname    = 'star-mini.c10r.facebook.com.'
+         |  type      = A
+         |  rclass    = IN
+         |  ttl       = 56
+         |  rdlen     = None
+         |  rdata     = 157.240.196.35
+        ns        = None
+        ar        = None
+
+
+
+
+
+the response dns packet have the request query header (["DNS"].qd) and the response header
+
+
+Request
+###[ DNS ]### 
+        id        = 32085
+        qr        = 0
+        opcode    = QUERY
+        aa        = 0
+        tc        = 0
+        rd        = 1
+        ra        = 0
+        z         = 0
+        ad        = 0
+        cd        = 0
+        rcode     = ok
+        qdcount   = 1
+        ancount   = 0
+        nscount   = 0
+        arcount   = 0
+        \qd        \
+         |###[ DNS Question Record ]### 
+         |  qname     = 'www.facebook.com.'
+         |  qtype     = A
+         |  qclass    = IN
+        an        = None
+        ns        = None
+        ar        = None
+
+
+
+yes its facebook.com xD
+Note : the src dns server is our dns server with forward is activated
+###[ IP ]### 
+  version   = 4
+  ihl       = 5
+  tos       = 0x0
+  len       = None
+  id        = 43813
+  flags     = 
+  frag      = 0
+  ttl       = 64
+  proto     = udp
+  chksum    = None
+  src       = 10.0.0.15
+  dst       = 10.0.0.109
+  \options   \
+###[ UDP ]### 
+     sport     = domain
+     dport     = 44576
+     len       = None
+     chksum    = None
+###[ DNS ]### 
+        id        = 58994
+        qr        = 1
+        opcode    = QUERY
+        aa        = 0
+        tc        = 0
+        rd        = 1
+        ra        = 1
+        z         = 0
+        ad        = 0
+        cd        = 0
+        rcode     = ok
+        qdcount   = 1
+        ancount   = 1
+        nscount   = 0
+        arcount   = 0
+        \qd        \
+         |###[ DNS Question Record ]### 
+         |  qname     = 'www.facebook.com.'
+         |  qtype     = AAAA
+         |  qclass    = IN
+        \an        \
+         |###[ DNS Resource Record ]### 
+         |  rrname    = 'www.facebook.com.'
+         |  type      = A
+         |  rclass    = IN
+         |  ttl       = 0
+         |  rdlen     = None
+         |  rdata     = 10.0.0.15
+        ns        = None
+        ar        = None
